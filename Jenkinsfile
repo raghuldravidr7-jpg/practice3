@@ -31,7 +31,7 @@ pipeline {
                 stage('Execute Application') {
                     steps {
                         echo "Deployment approved! Running ${params.ENVIRONMENT} configuration..."
-                        sh 'python3 app.py'
+                        sh 'app.py'
                     }
                 }
             }
