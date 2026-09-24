@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url:'https://github.com/raghuldravidr7-jpg/practice3.git'
+                git branch:'main',url:'https://github.com/raghuldravidr7-jpg/practice3.git'
             }
         }
         stage('Build') {
