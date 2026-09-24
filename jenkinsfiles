@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch:'main',url:'https://github.com/raghuldravidr7-jpg/practice3.git'
+            }
+        }
+
+        stage('Parallel Checks') {
+            parallel {
+                stage('Unit Check') {
+                    steps {
+                        echo 'Starting Unit Check...'
+                        sh 'python3 -c "import time; print(\'Unit check started\'); time.sleep(5); print(\'Unit check passed\')"'
+                    }
+                }
+                stage('Integration Check') {
+                    steps {
+                        echo 'Starting Integration Check...'
+                        sh 'python3 -c "import time; print(\'Integration check started\'); time.sleep(5); print(\'Integration check passed\')"'
+                    }
+                }
+            }
+        }
+
+        stage('Summary') {
+            steps {
+                echo 'Pipeline Execution Summary:'
+                echo 'All parallel checks completed successfully.'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '🎉 Success: All pipeline stages completed perfectly!'
+        }
+        failure {
+            echo '❌ Failure: One or more stages in the pipeline failed.'
+        }
+    }
+}
