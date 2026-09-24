@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo "Checking out source code from repository..."
+                git url:'https://github.com/raghuldravidr7-jpg/practice3.git'
             }
         }
         stage('Build') {
